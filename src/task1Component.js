@@ -8,7 +8,7 @@ const Task1 = () => {
         return <p>Fetching burrito flavor...</p>;
       }
     
-      return <p>{data.task}{console.log(data)}</p>;
+      return <p>done</p>;
 }
  
 export default Task1;
