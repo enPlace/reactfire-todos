@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { getFirestore } from "@firebase/firestore";
+import { useFirebaseApp , FirestoreProvider} from "reactfire";
+import Task1 from "./task1Component";
+import TaskList from "./TaskList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+    const firestoreInstance = getFirestore(useFirebaseApp());
+    return (
+      <FirestoreProvider sdk={firestoreInstance}>
+        <h1>🌯</h1>
+        <Task1 />
+        <TaskList></TaskList>
+      </FirestoreProvider>
+    );
 }
-
+ 
 export default App;
