@@ -36,6 +36,7 @@ const App = () => {
   } else
     return (
       <div>
+        {console.log(user.uid)}
         <h1>Welcome Back, {user.displayName}!</h1>
         <button
           onClick={() => {
