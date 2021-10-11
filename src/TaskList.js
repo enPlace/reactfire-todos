@@ -1,6 +1,6 @@
-import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { collection, query, deleteDoc, doc} from "@firebase/firestore";
-import { useState } from "react";
+import { useFirebaseApp, useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
+import { collection, query, deleteDoc, doc } from "@firebase/firestore";
+import { signOut, getAuth } from "@firebase/auth";
 
 const TaskList = () => {
   const firestore = useFirestore();
@@ -9,7 +9,8 @@ const TaskList = () => {
   const { status, data: todoData } = useFirestoreCollectionData(todosQuery, {
     idField: "id",
   });
-
+ 
+  
   const deleteTask = async (id)=>{
     await deleteDoc(doc(firestore, "todos", id));
   }
@@ -26,7 +27,7 @@ const TaskList = () => {
           return (
             <li>
               {" "}
-              <span>id: {todo.id} {todo.task}</span>{" "}
+              <span> {todo.task}</span>{" "}
               <span>
                 <button onClick = {()=>{
                   deleteTask(todo.id)

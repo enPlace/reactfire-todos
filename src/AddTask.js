@@ -1,4 +1,4 @@
-import { collection, setDoc, doc } from "@firebase/firestore";
+import { setDoc, doc } from "@firebase/firestore";
 import { useFirestore } from "reactfire";
 import { useState } from "react";
 
@@ -8,15 +8,15 @@ const AddTask = () => {
   const firestore = useFirestore();
 
   const addTask = async () => {
-      console.log(inputVal)
-    const docData = { task: inputVal};
+    console.log(inputVal);
+    const docData = { task: inputVal };
+    setInputVal("");
     const docRef = await setDoc(
       doc(firestore, "todos", `task${count}`),
       docData
     );
     setCount(count + 1);
     console.log(docRef);
-    setInputVal("")
   };
 
   const handleInputChange = (e) => {

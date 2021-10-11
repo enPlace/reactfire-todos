@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import App from "./App";
-import { FirebaseAppProvider } from "reactfire";
+import { FirebaseAppProvider, AuthProvider, useFirebaseApp } from "reactfire";
+import { getAuth } from "@firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,9 +13,18 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
+const UserAuth = () =>{
+  const auth = getAuth(useFirebaseApp());
+  return (
+    <AuthProvider sdk={auth}>
+       <App />
+    </AuthProvider>
+  )
+}
+
 render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-    <App />
+   <UserAuth></UserAuth>
   </FirebaseAppProvider>,
   document.getElementById("root")
 );
