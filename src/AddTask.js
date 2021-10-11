@@ -2,7 +2,7 @@ import { setDoc, doc } from "@firebase/firestore";
 import { useFirestore } from "reactfire";
 import { useState } from "react";
 
-const AddTask = () => {
+const AddTask = ({userId}) => {
   const [count, setCount] = useState(10);
   const [inputVal, setInputVal] = useState("");
   const firestore = useFirestore();
@@ -12,7 +12,7 @@ const AddTask = () => {
     const docData = { task: inputVal };
     setInputVal("");
     const docRef = await setDoc(
-      doc(firestore, "todos", `task${count}`),
+      doc(firestore, userId, `task${count}`),
       docData
     );
     setCount(count + 1);

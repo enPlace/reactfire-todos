@@ -36,6 +36,7 @@ const App = () => {
   } else
     return (
       <div>
+        {console.log(user.uid)}
         <h1>Welcome Back, {user.displayName}!</h1>
         <button
           onClick={() => {
@@ -47,8 +48,8 @@ const App = () => {
         <FirestoreProvider sdk={firestoreInstance}>
           <h1>🌯</h1>
           <Task1 />
-          <AddTask></AddTask>
-          <TaskList></TaskList>
+          <AddTask userId ={user.uid} ></AddTask>
+          <TaskList userId = {user.uid}></TaskList>
         </FirestoreProvider>
       </div>
     );
